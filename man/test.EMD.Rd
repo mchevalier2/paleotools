@@ -64,7 +64,7 @@ comparison is better than random.
 m1 <- matrix(abs(rnorm(25)), ncol=5)
 m2 <- matrix(abs(rnorm(25)), ncol=5)
 test.EMD(m1, m2)
-res <- test.EMD(m1, m2)
+res <- test.EMD(m1, m2, plot=FALSE, verbose=TRUE)
 str(res)
 \dontrun{
   test.EMD(m1, m2, save=TRUE, filename='test-emd.png')
