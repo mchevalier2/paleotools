@@ -2,15 +2,18 @@
 #'
 #' Runs all the different steps of a CREST reconstruction in one function.
 #'
-#' @param site_info A vector containing the coordinates of the study site.
-#' @return A \code{\link{crestObj}} containing the reconstructions.
+#' @param s .
+#' @param pol2pft .
+#' @param pft2biome .
+#' @return A .
 #' @export
 #' @examples
+#' 1:5
 #'
 biomise <- function(s, pol2pft, pft2biome) {
     stopifnot("s should be a data frame" = is.data.frame(s))
 
-    res <- pollen2pft(s, pol2pft)
-    res <- pft2biomme(res, pft2biomme)
+    res <- paleotools::pollen2pft(s, pol2pft)
+    res <- paleotools::pft2biome(res, pft2biome)
     res
 }

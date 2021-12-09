@@ -7,14 +7,17 @@
 pft2biome(s, pft2biome)
 }
 \arguments{
-\item{site_info}{A vector containing the coordinates of the study site.}
+\item{s}{.}
+
+\item{pft2biome}{.}
 }
 \value{
-A \code{\link{crestObj}} containing the reconstructions.
+A .
 }
 \description{
 Runs all the different steps of a CREST reconstruction in one function.
 }
 \examples{
+1:5
 
 }

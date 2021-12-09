@@ -2,10 +2,12 @@
 #'
 #' Runs all the different steps of a CREST reconstruction in one function.
 #'
-#' @param site_info A vector containing the coordinates of the study site.
-#' @return A \code{\link{crestObj}} containing the reconstructions.
+#' @param s .
+#' @param pol2pft .
+#' @return As.
 #' @export
 #' @examples
+#' 1:5
 #'
 pollen2pft <- function(s, pol2pft) {
     stopifnot("s should be a data frame" = is.data.frame(s))
@@ -15,7 +17,7 @@ pollen2pft <- function(s, pol2pft) {
         warning(paste0("Somme pollen taxa (", paste(missing_taxa, collapse=', '), ") were not in the PFT scheme."))
     }
 
-    res <- setNames(data.frame(matrix(ncol = ncol(pol2pft), nrow = nrow(s))), colnames(pol2pft))
+    res <- stats::setNames(data.frame(matrix(ncol = ncol(pol2pft), nrow = nrow(s))), colnames(pol2pft))
     rownames(res) <- rownames(s)
 
     for( i in 1:nrow(s)) { ## Loop on the samples

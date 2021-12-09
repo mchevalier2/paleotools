@@ -7,14 +7,17 @@
 pollen2pft(s, pol2pft)
 }
 \arguments{
-\item{site_info}{A vector containing the coordinates of the study site.}
+\item{s}{.}
+
+\item{pol2pft}{.}
 }
 \value{
-A \code{\link{crestObj}} containing the reconstructions.
+As.
 }
 \description{
 Runs all the different steps of a CREST reconstruction in one function.
 }
 \examples{
+1:5
 
 }

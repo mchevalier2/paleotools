@@ -12,14 +12,23 @@ EMD(
 )
 }
 \arguments{
-\item{site_info}{A vector containing the coordinates of the study site.}
+\item{x, y}{The two vectors to compare}
+
+\item{weight.m}{Matrix of weights. Values should be 'numeric'.}
 }
 \value{
-A \code{\link{crestObj}} containing the reconstructions.
+The EMD between \code{x} and \code{y}.
 }
 \description{
-Runs all the different steps of a CREST reconstruction in one function.
+Calculates the EMD for two vectors \code{x} and \code{y}.
 }
 \examples{
+EMD(1:5, 6:10)
+m <- matrix(1:25, ncol=5)
+for(i in 1:5) m[i,i] <- 0
+EMD(1:5, 6:10, weight.m=m)
+\dontrun{
+  EMD(1:5, 1:6)
+}
 
 }
