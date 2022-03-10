@@ -32,5 +32,5 @@ EMD <- function(x, y, weight.m = matrix(rep(1, length(x)**2), ncol=length(x), by
         return(as.numeric(w[a[1], b[1]]))
     }
 
-    emdist::emd2d(x, y, dist=fdist)
+    emdist::emd2d(x, y, dist=fdist) / max(weight.m)
 }
