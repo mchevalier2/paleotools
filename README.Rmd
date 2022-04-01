@@ -31,12 +31,14 @@ devtools::install_github("mchevalier2/paleotools")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem.
+This is a basic example which shows you how to use the Earth Movers' Distance
+(EMD) and the associated significance test.
 
 ```{r example}
 library(paleotools)
 
 example(EMD)
-example(test.EMD)
+example(EMD.test)
+
 
 ```

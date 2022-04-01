@@ -24,7 +24,7 @@ EMD.test(
 )
 }
 \arguments{
-\item{x, y}{The two matrices to compare}
+\item{x, y}{Two matrices of the same dimensions to compare.}
 
 \item{nrep}{The number of randomisation to perform (Default 1000).}
 
@@ -68,10 +68,12 @@ Calculates the EMD for two matrices \code{x} and \code{y} and test if the
 comparison is better than random.
 }
 \examples{
-m1 <- matrix(abs(rnorm(500)), ncol=5)
-m2 <- matrix(abs(rnorm(500)), ncol=5)
-EMD.test(m1, m2)
-res <- EMD.test(m1, m2, plot=FALSE, verbose=TRUE)
+##> We generate two tables of random, positive data
+m1 <- matrix(abs(rnorm(500)), ncol=5) ; m1 <- m1 / apply(m1, 1, sum)
+m2 <- matrix(abs(rnorm(500)), ncol=5) ; m2 <- m2 / apply(m2, 1, sum)
+EMD.test(m1, m2, plot=FALSE)
+res <- EMD.test(m1, m2, plot=TRUE, verbose=TRUE)
+res <- EMD.test(m1, 1+m1, plot=TRUE, verbose=TRUE, nrep=100)
 str(res)
 \dontrun{
   EMD.test(m1, m2, save=TRUE, filename='test-emd.png')

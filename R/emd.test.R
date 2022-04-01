@@ -3,7 +3,7 @@
 #' Calculates the EMD for two matrices \code{x} and \code{y} and test if the
 #' comparison is better than random.
 #'
-#' @param x,y The two matrices to compare
+#' @param x,y Two matrices of the same dimensions to compare.
 #' @param weight.m Matrix of weights. Values should be 'numeric'.
 #' @param nrep The number of randomisation to perform (Default 1000).
 #' @param alpha The significance threshold of the test (Default 0.05).
@@ -29,10 +29,12 @@
 #'         \code{nrep} randomised data. 3. The pvalue of the test.
 #' @export
 #' @examples
-#' m1 <- matrix(abs(rnorm(500)), ncol=5)
-#' m2 <- matrix(abs(rnorm(500)), ncol=5)
-#' EMD.test(m1, m2)
-#' res <- EMD.test(m1, m2, plot=FALSE, verbose=TRUE)
+#' ##> We generate two tables of random, positive data
+#' m1 <- matrix(abs(rnorm(500)), ncol=5) ; m1 <- m1 / apply(m1, 1, sum)
+#' m2 <- matrix(abs(rnorm(500)), ncol=5) ; m2 <- m2 / apply(m2, 1, sum)
+#' EMD.test(m1, m2, plot=FALSE)
+#' res <- EMD.test(m1, m2, plot=TRUE, verbose=TRUE)
+#' res <- EMD.test(m1, 1+m1, plot=TRUE, verbose=TRUE, nrep=100)
 #' str(res)
 #' \dontrun{
 #'   EMD.test(m1, m2, save=TRUE, filename='test-emd.png')
@@ -84,6 +86,10 @@ EMD.test <- function( x, y, nrep=200, alpha = 0.05,
     ##> Calculating EMD with the true data
     real.emd <- 0
     for(j in 1:nsample) {
+        if(emdist::emd2d(matrix(x[j, ]), matrix(y[j, ]), dist=fdist) > 1){
+            print(matrix(x[j, ]))
+            print(matrix(y[j, ]))
+        }
         real.emd <- real.emd + emdist::emd2d(matrix(x[j, ]), matrix(y[j, ]), dist=fdist)
     }
     real.emd <- real.emd / nsample / max(weight.m)
@@ -97,11 +103,10 @@ EMD.test <- function( x, y, nrep=200, alpha = 0.05,
         }
     }
     btstrppd.emds <- btstrppd.emds / nsample / max(weight.m)
+    pos_val <- (stats::knots(stats::ecdf(btstrppd.emds))-rev(stats::knots(stats::ecdf(rndm.emds)))) > 0
 
     ##> Printing results on screen
     if(verbose) {
-        pos_val <- (stats::knots(stats::ecdf(btstrppd.emds))-rev(stats::knots(stats::ecdf(rndm.emds)))) > 0
-
         cat('\n\tTesting significativity of the EMD\n\n')
         cat('Measured EMD:', round(real.emd, 3), '\n')
         cat('Uncertainty range:   Max\t   99%\t   95%\t   90%\n')
@@ -119,6 +124,8 @@ EMD.test <- function( x, y, nrep=200, alpha = 0.05,
             } else {
                 grDevices::pdf(filename, width=width*0.393701, height=height*0.393701)
             }
+            graphics::par(mar=c(2,2,.5,0.5), ps=ifelse(save, 8, 12), cex=1)
+            graphics::par(mgp=c(0.8,0.1,0))
         } else {
             par_usr <- graphics::par(no.readonly = TRUE)
             on.exit(graphics::par(par_usr))
@@ -129,9 +136,6 @@ EMD.test <- function( x, y, nrep=200, alpha = 0.05,
         } else {
             colour <- col[1]
         }
-
-        graphics::par(mar=c(2,2,.5,0.5), ps=ifelse(save, 8, 12), cex=1)
-        graphics::par(mgp=c(0.8,0.1,0))
 
         h1 <- graphics::hist(rndm.emds, plot=FALSE, breaks=seq(0,1, emd.step))
         h2 <- graphics::hist(btstrppd.emds, plot=FALSE, breaks=seq(0,1, emd.step))

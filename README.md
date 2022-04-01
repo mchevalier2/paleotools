@@ -23,10 +23,10 @@ devtools::install_github("mchevalier2/paleotools")
 This is a basic example which shows you how to solve a common problem.
 
 ``` r
-library(paleotools)
+#library(paleotools)
 
 example(EMD)
 #> Warning in example(EMD): no help found for 'EMD'
-example(test.EMD)
-#> Warning in example(test.EMD): no help found for 'test.EMD'
+example(EMD.test)
+#> Warning in example(EMD.test): no help found for 'EMD.test'
 ```
