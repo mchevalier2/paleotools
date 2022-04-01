@@ -34,7 +34,7 @@ devtools::install_github("mchevalier2/paleotools")
 This is a basic example which shows you how to solve a common problem.
 
 ```{r example}
-library(PTBoxEMD)
+library(paleotools)
 
 example(EMD)
 example(test.EMD)
