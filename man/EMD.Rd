@@ -2,7 +2,7 @@
 % Please edit documentation in R/EMD.R
 \name{EMD}
 \alias{EMD}
-\title{A wrapper for all the crest functions.}
+\title{Calculates the EMD for two vectors \code{x} and \code{y}.}
 \usage{
 EMD(
   x,

@@ -1,7 +1,7 @@
-#' Test if two set of samples are more similar than expected if random.
+#' Test if two set of samples share a similar spatial structure.
 #'
 #' Calculates the EMD for two matrices \code{x} and \code{y} and test if the
-#' comparison is better than random.
+#' spatial structure of the two is better than random.
 #'
 #' @param x,y Two matrices of the same dimensions to compare.
 #' @param weight.m Matrix of weights. Values should be 'numeric'.
@@ -32,20 +32,20 @@
 #' ##> We generate two tables of random, positive data
 #' m1 <- matrix(abs(rnorm(500)), ncol=5) ; m1 <- m1 / apply(m1, 1, sum)
 #' m2 <- matrix(abs(rnorm(500)), ncol=5) ; m2 <- m2 / apply(m2, 1, sum)
-#' EMD.test(m1, m2, plot=FALSE)
-#' res <- EMD.test(m1, m2, plot=TRUE, verbose=TRUE)
-#' res <- EMD.test(m1, 1+m1, plot=TRUE, verbose=TRUE, nrep=100)
+#' signif_struct(m1, m2, plot=FALSE)
+#' res <- signif_struct(m1, m2, plot=TRUE, verbose=TRUE)
+#' res <- signif_struct(m1, 1+m1, plot=TRUE, verbose=TRUE, nrep=100)
 #' str(res)
 #' \dontrun{
-#'   EMD.test(m1, m2, save=TRUE, filename='test-emd.png')
+#'   signif_struct(m1, m2, save=TRUE, filename='test-emd.png')
 #' }
 #'
-EMD.test <- function( x, y, nrep=200, alpha = 0.05,
-                      weight.m =  matrix(1, ncol=ncol(x), nrow=ncol(x)) - diag(1, ncol=ncol(x), nrow=ncol(x)),
-                      plot=TRUE, verbose=TRUE, emd.step = 0.002,
-                      save=FALSE, filename=paste0('test', ifelse(as.png, '.png', '.pdf')),
-                      as.png=TRUE, png.res=300, width=9, height=9, col=c('#66a182', '#d95f02')
-                     ) {
+signif_struct <- function( x, y, nrep=200, alpha = 0.05,
+                           weight.m =  matrix(1, ncol=ncol(x), nrow=ncol(x)) - diag(1, ncol=ncol(x), nrow=ncol(x)),
+                           plot=TRUE, verbose=TRUE, emd.step = 0.002,
+                           save=FALSE, filename=paste0('test', ifelse(as.png, '.png', '.pdf')),
+                           as.png=TRUE, png.res=300, width=9, height=9, col=c('#66a182', '#d95f02')
+                          ) {
     if(base::missing(x)) x
     if(base::missing(y)) y
 

@@ -1,4 +1,4 @@
-#' A wrapper for all the crest functions.
+#' Calculates the EMD for two vectors \code{x} and \code{y}.
 #'
 #' Calculates the EMD for two vectors \code{x} and \code{y}.
 #'
