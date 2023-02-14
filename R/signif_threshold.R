@@ -1,7 +1,7 @@
-#' Test if two set of samples share a similar spatial structure.
+#' Calculate an analogy threshold from a compilation of observations
 #'
-#' Calculates the EMD for two matrices \code{x} and \code{y} and test if the
-#' spatial structure of the two is better than random.
+#' Calculate an analogy threshold from a compilation of observations
+
 #'
 #' @param x A matrix of samples (rows) to compare.
 #' @param weight.m Matrix of weights. Values should be 'numeric'.

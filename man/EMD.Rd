@@ -26,7 +26,7 @@ Calculates the EMD for two vectors \code{x} and \code{y}.
 EMD(1:5/sum(1:5), 6:10/sum(6:10))
 EMD(1:5, 6:10) # The vectors are normalised by the function
 m <- matrix(1:25, ncol=5)
-for(i in 1:5) m[i,i] <- 0
+diag(m) <- 0
 EMD(1:5, 6:10, weight.m=m)
 
 }

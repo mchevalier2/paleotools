@@ -2,7 +2,7 @@
 % Please edit documentation in R/signif_threshold.R
 \name{signif_threshold}
 \alias{signif_threshold}
-\title{Test if two set of samples share a similar spatial structure.}
+\title{Calculate an analogy threshold from a compilation of observations}
 \usage{
 signif_threshold(
   x,
@@ -63,8 +63,7 @@ A list containing 3 items: 1. The mean EMD derived the comparison of
 \code{nrep} randomised data. 3. The pvalue of the test.
 }
 \description{
-Calculates the EMD for two matrices \code{x} and \code{y} and test if the
-spatial structure of the two is better than random.
+Calculate an analogy threshold from a compilation of observations
 }
 \examples{
 ##> We generate two tables of random, positive data
