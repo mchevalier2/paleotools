@@ -44,11 +44,11 @@ for(i in 1:5) m[i,i] <- 0
 EMD(1:5, 6:10, weight.m=m)
 ```
 
-```{r EMD.test,  fig.show="hold"}
+```{r signif_struct,  fig.show="hold"}
 m1 <- matrix(abs(rnorm(500)), ncol=5) ; m1 <- m1 / apply(m1, 1, sum)
 m2 <- matrix(abs(rnorm(500)), ncol=5) ; m2 <- m2 / apply(m2, 1, sum)
-EMD.test(m1, m2, plot=FALSE)
-res <- EMD.test(m1, m2, plot=TRUE, verbose=TRUE)
-res <- EMD.test(m1, 1+m1, plot=TRUE, verbose=TRUE, nrep=100)
+signif_struct(m1, m2, plot=FALSE)
+res <- signif_struct(m1, m2, plot=TRUE, verbose=TRUE)
+res <- signif_struct(m1, 1+m1, plot=TRUE, verbose=TRUE, nrep=100)
 str(res)
 ```
